@@ -8,8 +8,8 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background: linear-gradient(to bottom, #974597, #ffffff);
-            color: rgb(0, 0, 0);
+            background: linear-gradient(to bottom, #800080, #ffffff);
+            color: #333;
             margin: 0;
             padding: 0;
             overflow: hidden;
@@ -147,14 +147,14 @@
         }
 
         .form-container button:hover {
-            background-color: #0ee23c;
+            background-color: #218838;
         }
 
     </style>
 </head>
 <body>
     <div id="formPage" class="page active">
-        <h1>Welcome! SRISHTY 😊</h1>
+        <h1>Welcome! 😊</h1>
         <p>Please fill out the form to proceed:</p>
         <div class="form-container">
             <input type="text" id="name" placeholder="Your Name" required>
@@ -164,8 +164,8 @@
     </div>
 
     <div id="page1" class="page">
-        <h1>DO YOU LOVE ME ?</h1>
-        <p>I KNOW WE HAVE THAT CHEMISTRY !</p>
+        <h1>Will You Go Out With Me?</h1>
+        <p>I promise it'll be a lot of fun!</p>
         <div class="buttons">
             <button class="button yes" onclick="goToPage('yes')">Yes</button>
             <button class="button no" disabled>No</button>
@@ -196,6 +196,11 @@
             const email = document.getElementById('email').value;
 
             if (name && email) {
+                // Save user data to localStorage
+                localStorage.setItem('userName', name);
+                localStorage.setItem('userEmail', email);
+
+                // Show the main page
                 document.getElementById('formPage').classList.remove('active');
                 document.getElementById('page1').classList.add('active');
             } else {
