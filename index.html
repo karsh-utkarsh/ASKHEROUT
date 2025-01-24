@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Go Out With Me?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(to bottom, #974597, #ffffff);
+            color: rgb(0, 0, 0);
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .page {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .page.active {
+            display: flex;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        .button.no {
+            background-color: #ff4d4d;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .response {
+            margin-top: 30px;
+            font-size: 1.8rem;
+            color: #228b22;
+        }
+
+        .gif {
+            margin-top: 20px;
+            max-width: 80%;
+            border-radius: 10px;
+        }
+
+        @keyframes dropFlowers {
+            0% {
+                transform: translateY(-100%);
+            }
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+
+        .flower {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-image: url('https://cdn-icons-png.flaticon.com/512/616/616490.png');
+            background-size: cover;
+            animation: dropFlowers 5s linear infinite;
+            opacity: 0.8;
+        }
+
+        .flower:nth-child(1) {
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .flower:nth-child(2) {
+            left: 30%;
+            animation-delay: 1s;
+        }
+
+        .flower:nth-child(3) {
+            left: 50%;
+            animation-delay: 2s;
+        }
+
+        .flower:nth-child(4) {
+            left: 70%;
+            animation-delay: 3s;
+        }
+
+        .flower:nth-child(5) {
+            left: 90%;
+            animation-delay: 4s;
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .form-container input {
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 1rem;
+            width: 80%;
+            max-width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-container button {
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            color: white;
+            background-color: #28a745;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .form-container button:hover {
+            background-color: #0ee23c;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="formPage" class="page active">
+        <h1>Welcome! SRISHTY 😊</h1>
+        <p>Please fill out the form to proceed:</p>
+        <div class="form-container">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="email" id="email" placeholder="Your Email" required>
+            <button onclick="validateForm()">Submit</button>
+        </div>
+    </div>
+
+    <div id="page1" class="page">
+        <h1>DO YOU LOVE ME ?</h1>
+        <p>I KNOW WE HAVE THAT CHEMISTRY !</p>
+        <div class="buttons">
+            <button class="button yes" onclick="goToPage('yes')">Yes</button>
+            <button class="button no" disabled>No</button>
+        </div>
+    </div>
+
+    <div id="pageYes" class="page">
+        <h1>Yay! 🎉</h1>
+        <p>I'm so excited! Let's plan something special together!</p>
+        <img class="gif" src="https://media.giphy.com/media/3o7abldj0b3rxrZUxW/giphy.gif" alt="Celebration GIF">
+    </div>
+
+    <div id="pageNo" class="page">
+        <h1>Oh no! 😢</h1>
+        <p>That's okay. Maybe another time!</p>
+        <img class="gif" src="https://media.giphy.com/media/3o6ZsYm5P38Nv7BdIY/giphy.gif" alt="Sad GIF">
+    </div>
+
+    <div class="flower"></div>
+    <div class="flower"></div>
+    <div class="flower"></div>
+    <div class="flower"></div>
+    <div class="flower"></div>
+
+    <script>
+        function validateForm() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+
+            if (name && email) {
+                document.getElementById('formPage').classList.remove('active');
+                document.getElementById('page1').classList.add('active');
+            } else {
+                alert('Please fill out both fields.');
+            }
+        }
+
+        function goToPage(answer) {
+            document.getElementById('page1').classList.remove('active');
+            if (answer === 'yes') {
+                document.getElementById('pageYes').classList.add('active');
+            } else {
+                document.getElementById('pageNo').classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
+
